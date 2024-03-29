@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #383838;
+    background-color: #222;
     min-height: 100vh;
     min-width: 100%;
     max-width: 100%;
