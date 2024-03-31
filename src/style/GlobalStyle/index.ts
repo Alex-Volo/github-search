@@ -32,4 +32,27 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100vw;
     min-height: 100vh;
   }
+
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+	  display: none;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 30px;
+  }
+
+  .scronly {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    font-size: 1px;
+  }
 `

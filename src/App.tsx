@@ -1,6 +1,6 @@
+import { Header, SearchForm } from 'components'
 import './App.css'
 // import { Octokit } from 'octokit'
-import { AppRoutes } from 'routes'
 import { GlobalStyle } from 'style/GlobalStyle'
 
 function App() {
@@ -13,8 +13,11 @@ function App() {
   //   .then((res) => console.log(res))
   return (
     <>
-    <GlobalStyle />
-    <AppRoutes />
+      <GlobalStyle />
+      <main className="main">
+        <Header />
+        <SearchForm />
+      </main>
     </>
   )
 }
