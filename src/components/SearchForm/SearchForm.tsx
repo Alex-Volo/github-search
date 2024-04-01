@@ -1,19 +1,40 @@
 import type { ChangeEventHandler } from 'react'
 import { useState, type FC } from 'react'
+import { useSearchUserQuery } from 'service/useSearchQuery'
 import * as S from './styles'
+import type { IUser } from 'service/api'
 
 interface ISearchFormProps {
   className?: string
+  returnSearchValue: (value: string) => void
 }
 
-export const SearchForm: FC<ISearchFormProps> = () => {
+export const SearchForm: FC<ISearchFormProps> = ({ returnSearchValue }) => {
   const [searchValue, setSearchValue] = useState<string>('')
-  const handleSubmit
+  const [startQuery, setStartQuery] = useState(false)
+
+  const { data, isSuccess } = useSearchUserQuery(searchValue, startQuery)
+
+  // const [currentUsersList, setCurrentUsersList] = useState<IUser[]>([])
+  // if (isSuccess && data) {
+  //   setCurrentUsersList(data?.data.items)
+  //   console.log(currentUsersList)
+  // }
+  const handleSubmit = () => {
+    returnSearchValue(searchValue)
+    setStartQuery(true)
+  }
+
   const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearchValue(e.target.value)
   }
   return (
-    <S.Form onSubmit={}>
+    <S.Form
+      onSubmit={(e) => {
+        e.preventDefault()
+        handleSubmit()
+      }}
+    >
       <label htmlFor="search-input" className="scronly">
         Введите имя пользователя
       </label>
@@ -32,7 +53,7 @@ export const SearchForm: FC<ISearchFormProps> = () => {
           title={'Только латинский алфавит без специальных символов. Первый символ всегда буква.'}
           onChange={handleSearchChange}
         />
-        <S.SubmitButton type='submit'>&#9658;</S.SubmitButton>
+        <S.SubmitButton type="submit">&#9658;</S.SubmitButton>
       </S.InputBox>
     </S.Form>
   )
