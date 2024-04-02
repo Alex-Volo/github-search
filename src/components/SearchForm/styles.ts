@@ -44,14 +44,16 @@ export const Input = styled.input`
     display: block;
   }
 
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
     background-color: red;
     -webkit-text-fill-color: #222;
     -webkit-box-shadow:
       0 0 0px 100px #fafafa inset,
       0 0 130px 0px #f0f0f096;
+  }
+  &:-webkit-autofill {
+    -webkit-text-fill-color: #222;
+    -webkit-box-shadow: 0 0 0px 100px #fafafa inset;
   }
 `
 

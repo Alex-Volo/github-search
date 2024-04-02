@@ -50,11 +50,53 @@ export interface IUser {
   suspended_at?: string | null | undefined
 }
 
-interface IResponseSearchUserData {
-  incomplete_results: boolean
-  items: IUser[]
-  total_count: number
+interface IUserDetailed {
+  login: string
+  id: number
+  node_id: string
+  avatar_url: string
+  gravatar_id: string
+  url: string
+  html_url: string
+  followers_url: string
+  following_url: string
+  gists_url: string
+  starred_url: string
+  subscriptions_url: string
+  organizations_url: string
+  repos_url: string
+  events_url: string
+  received_events_url: string
+  type: string
+  site_admin: boolean
+  name: string | null
+  company: string | null
+  blog: string
+  location: string | null
+  email: string | null
+  hireable: string | null
+  bio: string | null
+  twitter_username: string | null
+  public_repos: number
+  public_gists: number
+  followers: number
+  following: number
+  created_at: string
+  updated_at: string
 }
+
+interface IResponseUserDetailed {
+  data: IUserDetailed
+  headers: Record<string, string>
+  status: number
+  url: string
+}
+
+// interface IResponseSearchUserData {
+//   incomplete_results: boolean
+//   items: IUser[]
+//   total_count: number
+// }
 
 // interface IResponseSearchUser {
 //   data: IResponseSearchUserData
@@ -73,6 +115,18 @@ export const searchUser = async (q: string) => {
       q,
       'X-GitHub-Api-Version': '2022-11-28'
     })
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
+export const getUser = async (username: string): Promise<IResponseUserDetailed | undefined> => {
+  try {
+    const octokit = new Octokit()
+    const response = (await octokit.request(`GET /users/${username}`, {
+      'X-GitHub-Api-Version': '2022-11-28'
+    })) as unknown
+    return response as IResponseUserDetailed
   } catch (error) {
     console.warn(error)
   }

@@ -6,32 +6,50 @@ export const Box = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
   color: #f4f4f4;
   list-style: none;
   font-size: 24px;
 `
 
 export const UserItem = styled.li`
-  border-radius: 10px;
   box-sizing: border-box;
-  padding: 15px;
-  height: 60px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
   box-shadow:
-    5px 2px 12px -5px #fff,
-    inset 0 0 33px 24px #222;
+    1px 1px 1px 0px #ffffffb3,
+    4px 4px 9px -5px #fff,
+    inset 0 0 36px 25px #222;
   background-color: #ffffff61;
 `
 
-export const Logo = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const Avatar = styled.img`
+  display: block;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 `
-export const BelowLogo = styled.p`
-  position: absolute;
-  bottom: -40px;
-  font-size: 14px;
+export const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+export const ArrowBtn = styled.button`
+  height: 100%;
+  width: 50px;
+  margin-left: auto;
+  background-color: transparent;
+  color: #cacaca;
+  transform: scaleX(1.4);
+  font-size: 16px;
+  appearance: none;
+  border: none;
+  cursor: pointer;
 `

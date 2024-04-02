@@ -2,7 +2,7 @@ import type { ChangeEventHandler } from 'react'
 import { useState, type FC } from 'react'
 import { useSearchUserQuery } from 'service/useSearchQuery'
 import * as S from './styles'
-import type { IUser } from 'service/api'
+// import type { IUser } from 'service/api'
 
 interface ISearchFormProps {
   className?: string
@@ -13,13 +13,8 @@ export const SearchForm: FC<ISearchFormProps> = ({ returnSearchValue }) => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [startQuery, setStartQuery] = useState(false)
 
-  const { data, isSuccess } = useSearchUserQuery(searchValue, startQuery)
+  useSearchUserQuery(searchValue, startQuery)
 
-  // const [currentUsersList, setCurrentUsersList] = useState<IUser[]>([])
-  // if (isSuccess && data) {
-  //   setCurrentUsersList(data?.data.items)
-  //   console.log(currentUsersList)
-  // }
   const handleSubmit = () => {
     returnSearchValue(searchValue)
     setStartQuery(true)

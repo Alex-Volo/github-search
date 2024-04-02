@@ -1,13 +1,16 @@
-import { useState, type FC } from 'react'
-import * as S from './styles'
+import { type FC } from 'react'
+import { UserItem } from 'components'
 import type { IUser } from 'service/api'
+import * as S from './styles'
 
 interface IResultsProps {
-  className?: string
   usersList: IUser[] | undefined
 }
 
 export const Results: FC<IResultsProps> = ({ usersList }) => {
-  const userElements = usersList && usersList.map((user) => <S.UserItem key={user.id}>{user.login}</S.UserItem>)
+
+
+  const userElements = usersList && usersList.map((user) => <UserItem key={user.id} user={user} />)
+
   return <S.Box> {userElements} </S.Box>
 }
