@@ -50,6 +50,22 @@ export const SearchForm: FC<ISearchFormProps> = ({ returnSearchValue }) => {
         />
         <S.SubmitButton type="submit">&#9658;</S.SubmitButton>
       </S.InputBox>
+      <div>
+      <label>Сортировать по: 
+        <select name='sortby' id='sortby'>
+          <option value="">наибольшему соответствию</option>
+          <option value="followers">количеству подписчиков</option>
+          <option value="repositories">количеству репозиториев</option>
+          <option value="joined">дате регистрации</option>
+        </select>
+      </label>
+      <label>Порядок: 
+        <select name="order" id="order">
+          <option value="desc">по убыванию</option>
+          <option value="asc">по возрастанию</option>
+        </select>
+      </label>
+      </div>
     </S.Form>
   )
 }

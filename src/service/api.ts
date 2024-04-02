@@ -108,11 +108,14 @@ interface IResponseUserDetailed {
 //   url: string
 // }
 
-export const searchUser = async (q: string) => {
+export const searchUser = async (q: string, sort = undefined, order = undefined, page = undefined) => {
   try {
     const octokit = new Octokit()
     return octokit.request('GET /search/users', {
       q,
+      sort,
+      order,
+      page,
       'X-GitHub-Api-Version': '2022-11-28'
     })
   } catch (error) {
