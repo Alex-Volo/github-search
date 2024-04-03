@@ -1,4 +1,4 @@
-import { Header, SearchForm, Results } from 'components'
+import { Header, SearchForm, Results, Pagination } from 'components'
 import { GlobalStyle } from 'style/GlobalStyle'
 import { useSearchUserQuery } from 'service/useSearchQuery'
 import { useEffect, useState } from 'react'
@@ -20,7 +20,9 @@ function App() {
       <main className="main">
         <Header />
         <SearchForm returnSearchParams={(value: ISearchUserQueryParams) => setSearchQueryParams(value)} />
-        <p className='totalCount'>Всего результатов: {data && data.data.total_count}</p>
+        <p className="totalCount">Всего результатов: {data && data.data.total_count}</p>
+        {/* Пагинация */}
+        {data && <Pagination currentPage={1} totalCount={data.data.total_count} />}
         <Results usersList={currentUsersList} />
       </main>
     </>

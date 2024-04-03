@@ -1,11 +1,7 @@
 import type { FC } from 'react'
 import * as S from './styles'
 
-interface IHeaderProps {
-  className?: string
-}
-
-export const Header: FC<IHeaderProps> = () => (
+export const Header: FC = () => (
   <S.Box>
     <S.Heading>
       GitHub

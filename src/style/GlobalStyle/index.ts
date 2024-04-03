@@ -60,6 +60,6 @@ export const GlobalStyle = createGlobalStyle`
   .totalCount {
     text-align: center;
     font-size: 14px;
-    margin: 20px 0 0;
+    margin: 20px 0;
   }
 `

@@ -3,6 +3,7 @@ import { useState, type FC, useEffect } from 'react'
 import { useSearchUserQuery } from 'service/useSearchQuery'
 import * as S from './styles'
 import type { Order, ISearchUserQueryParams, SortBy } from 'types'
+
 interface ISearchFormProps {
   returnSearchParams: (value: ISearchUserQueryParams) => void
 }
