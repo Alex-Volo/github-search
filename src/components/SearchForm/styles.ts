@@ -40,13 +40,7 @@ export const Input = styled.input`
     box-shadow: 0 0 130px 0px #f0f0f096;
   }
 
-  &::before {
-    content: '';
-    display: block;
-  }
-
   &:-webkit-autofill:focus {
-    background-color: red;
     -webkit-text-fill-color: #222;
     -webkit-box-shadow:
       0 0 0px 100px #fafafa inset,
@@ -70,4 +64,32 @@ export const SubmitButton = styled.button`
   font-size: 32px;
   color: #303030;
   cursor: pointer;
+`
+
+export const SelectsBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+export const SelectLabel = styled.label`
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 18px;
+`
+
+export const Select = styled.select`
+  height: 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding-left: 4px;
+  &:focus {
+    box-shadow: 0 0 80px 0px #f0f0f0d9;
+  }
+
+  &:-webkit-autofill {
+    box-shadow: none;
+  }
 `

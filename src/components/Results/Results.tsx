@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 import { UserItem } from 'components'
-import type { IUser } from 'service/api'
+import type { IUser } from 'types' 
 import * as S from './styles'
 
 interface IResultsProps {

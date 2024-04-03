@@ -2,12 +2,12 @@ import { styled } from 'styled-components'
 
 export const Box = styled.ul`
   padding: 0;
-  margin: 50px 0;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  color: #f4f4f4;
+  color: #fafafa;
   list-style: none;
   font-size: 24px;
 `

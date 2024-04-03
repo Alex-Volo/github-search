@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     min-width: 100%;
     max-width: 100%;
+    color: #f4f4f4;
   }
   
   #root {
@@ -54,5 +55,11 @@ export const GlobalStyle = createGlobalStyle`
     position: absolute;
     clip: rect(0 0 0 0);
     font-size: 1px;
+  }
+
+  .totalCount {
+    text-align: center;
+    font-size: 14px;
+    margin: 20px 0 0;
   }
 `

@@ -1,25 +1,26 @@
 import { Header, SearchForm, Results } from 'components'
-import './App.css'
 import { GlobalStyle } from 'style/GlobalStyle'
 import { useSearchUserQuery } from 'service/useSearchQuery'
 import { useEffect, useState } from 'react'
-import type { IUser } from 'service/api'
+import type { ISearchUserQueryParams, IUser } from 'types'
 
 function App() {
-  const [searchValue, setSearchValue] = useState<string>('')
-  const { data, isSuccess } = useSearchUserQuery(searchValue, Boolean(searchValue))
+  const [searchQueryParams, setSearchQueryParams] = useState<ISearchUserQueryParams>({ q: '', enabled: false })
+  const { data, isSuccess } = useSearchUserQuery(searchQueryParams)
   console.log(data)
+  console.log(searchQueryParams)
   const [currentUsersList, setCurrentUsersList] = useState<IUser[] | undefined>([])
   useEffect(() => {
     setCurrentUsersList(data?.data.items)
-  }, [data])
+  }, [data, searchQueryParams])
 
   return (
     <>
       <GlobalStyle />
       <main className="main">
         <Header />
-        <SearchForm returnSearchValue={(value: string) => setSearchValue(value)} />
+        <SearchForm returnSearchParams={(value: ISearchUserQueryParams) => setSearchQueryParams(value)} />
+        <p className='totalCount'>Всего результатов: {data && data.data.total_count}</p>
         <Results usersList={currentUsersList} />
       </main>
     </>

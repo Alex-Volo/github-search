@@ -1,6 +1,6 @@
 import { useState, type FC } from 'react'
 import * as S from './styles'
-import type { IUser } from 'service/api'
+import type { IUser } from 'types'
 import { useGetUserQuery } from 'service/useGetUserQuery'
 
 interface IUserItemProps {
