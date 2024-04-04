@@ -1,4 +1,4 @@
-import { Header, SearchForm, Results, Pagination } from 'components'
+import { Header, SearchForm, Results, Pagination, Loader } from 'components'
 import { GlobalStyle } from 'style/GlobalStyle'
 import { useSearchUserQuery } from 'service/useSearchQuery'
 import { useEffect, useState } from 'react'
@@ -6,7 +6,7 @@ import type { ISearchUserQueryParams, IUser } from 'types'
 
 function App() {
   const [searchQueryParams, setSearchQueryParams] = useState<ISearchUserQueryParams>({ q: '', enabled: false })
-  const { data, isSuccess } = useSearchUserQuery(searchQueryParams)
+  const { data, isSuccess, isFetching } = useSearchUserQuery(searchQueryParams)
   console.log(data)
   console.log(searchQueryParams)
   const [currentUsersList, setCurrentUsersList] = useState<IUser[] | undefined>([])
@@ -35,7 +35,8 @@ function App() {
           />
         )}
 
-        <Results usersList={currentUsersList} />
+        {/* {isFetching ? <Loader /> : <Results usersList={currentUsersList} />} */}
+        <Loader />
 
         {data && (
           <Pagination
