@@ -26,7 +26,7 @@ export const SearchForm: FC<ISearchFormProps> = ({ returnSearchParams }) => {
   }
 
   useEffect(() => {
-    returnSearchParams({ q: searchValue, enabled: startQuery, sort: sortBy, order })
+    returnSearchParams({ q: searchValue, enabled: startQuery, sort: sortBy, order, page: 1 })
     setStartQuery(false)
   }, [sortBy, startQuery, order])
 

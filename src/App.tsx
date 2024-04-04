@@ -10,6 +10,9 @@ function App() {
   console.log(data)
   console.log(searchQueryParams)
   const [currentUsersList, setCurrentUsersList] = useState<IUser[] | undefined>([])
+
+  const returnSearchParams = (value: ISearchUserQueryParams) => setSearchQueryParams((prev) => ({ ...prev, ...value }))
+
   useEffect(() => {
     setCurrentUsersList(data?.data.items)
   }, [data, searchQueryParams])
@@ -19,11 +22,28 @@ function App() {
       <GlobalStyle />
       <main className="main">
         <Header />
-        <SearchForm returnSearchParams={(value: ISearchUserQueryParams) => setSearchQueryParams(value)} />
-        <p className="totalCount">Всего результатов: {data && data.data.total_count}</p>
-        {/* Пагинация */}
-        {data && <Pagination currentPage={1} totalCount={data.data.total_count} />}
+
+        <SearchForm returnSearchParams={returnSearchParams} />
+
+        {data && <p className="totalCount">Всего результатов: {data.data.total_count}</p>}
+
+        {data && (
+          <Pagination
+            currentPage={searchQueryParams.page ?? 1}
+            returnSearchParams={returnSearchParams}
+            totalCount={data.data.total_count}
+          />
+        )}
+
         <Results usersList={currentUsersList} />
+
+        {data && (
+          <Pagination
+            currentPage={searchQueryParams.page ?? 1}
+            returnSearchParams={returnSearchParams}
+            totalCount={data.data.total_count}
+          />
+        )}
       </main>
     </>
   )
