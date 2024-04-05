@@ -6,7 +6,7 @@ import type { ISearchUserQueryParams, IUser } from 'types'
 
 function App() {
   const [searchQueryParams, setSearchQueryParams] = useState<ISearchUserQueryParams>({ q: '', enabled: false })
-  const { data, isSuccess, isFetching } = useSearchUserQuery(searchQueryParams)
+  const { data, isSuccess, isFetching, isError, error } = useSearchUserQuery(searchQueryParams)
   console.log(data)
   console.log(searchQueryParams)
   const [currentUsersList, setCurrentUsersList] = useState<IUser[] | undefined>([])
@@ -35,8 +35,8 @@ function App() {
           />
         )}
 
-        {/* {isFetching ? <Loader /> : <Results usersList={currentUsersList} />} */}
-        <Loader />
+        {isFetching ? <Loader /> : isError ? <p>{error.message}</p> : <Results usersList={currentUsersList} />}
+        {/* <Loader /> */}
 
         {data && (
           <Pagination
