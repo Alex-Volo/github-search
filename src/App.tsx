@@ -35,7 +35,13 @@ function App() {
           />
         )}
 
-        {isFetching ? <Loader /> : isError ? <p>{error.message}</p> : <Results usersList={currentUsersList} />}
+        {isFetching ? (
+          <Loader />
+        ) : isError ? (
+          <p>{error instanceof Error && error.message}</p>
+        ) : (
+          <Results usersList={currentUsersList} />
+        )}
         {/* <Loader /> */}
 
         {data && (

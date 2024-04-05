@@ -4,7 +4,8 @@ import type { IResponseUserDetailed, Order, Page, SortBy } from 'types'
 export const searchUser = async (q: string, sort?: SortBy, order?: Order, page?: Page) => {
   try {
     const octokit = new Octokit()
-    return octokit.request('GET /search/users', {
+
+    return await octokit.request('GET /search/users', {
       q,
       sort,
       order,
@@ -12,7 +13,9 @@ export const searchUser = async (q: string, sort?: SortBy, order?: Order, page?:
       'X-GitHub-Api-Version': '2022-11-28'
     })
   } catch (error) {
-    console.warn(error)
+    if (error instanceof Error) {
+      console.warn(error.message)
+    }
   }
 }
 
@@ -24,6 +27,8 @@ export const getUser = async (username: string): Promise<IResponseUserDetailed |
     })) as unknown
     return response as IResponseUserDetailed
   } catch (error) {
-    console.warn(error)
+    if (error instanceof Error) {
+      console.warn(error)
+    }
   }
 }
