@@ -6,7 +6,7 @@ import type { ISearchUserQueryParams, IUser } from 'types'
 
 function App() {
   const [searchQueryParams, setSearchQueryParams] = useState<ISearchUserQueryParams>({ q: '', enabled: false })
-  const { data, isSuccess, isFetching, isError, error } = useSearchUserQuery(searchQueryParams)
+  const { data, isFetching, isError, error } = useSearchUserQuery(searchQueryParams)
   console.log(data)
   console.log(searchQueryParams)
   const [currentUsersList, setCurrentUsersList] = useState<IUser[] | undefined>([])
@@ -14,7 +14,7 @@ function App() {
   const returnSearchParams = (value: ISearchUserQueryParams) => setSearchQueryParams((prev) => ({ ...prev, ...value }))
 
   useEffect(() => {
-    setCurrentUsersList(data?.data.items)
+    setCurrentUsersList(data?.items)
   }, [data, searchQueryParams])
 
   return (
@@ -25,13 +25,13 @@ function App() {
 
         <SearchForm returnSearchParams={returnSearchParams} />
 
-        {data && <p className="totalCount">Всего результатов: {data.data.total_count}</p>}
+        {data && <p className="totalCount">Всего результатов: {data.total_count}</p>}
 
         {data && (
           <Pagination
             currentPage={searchQueryParams.page ?? 1}
             returnSearchParams={returnSearchParams}
-            totalCount={data.data.total_count}
+            totalCount={data.total_count}
           />
         )}
 
@@ -48,7 +48,7 @@ function App() {
           <Pagination
             currentPage={searchQueryParams.page ?? 1}
             returnSearchParams={returnSearchParams}
-            totalCount={data.data.total_count}
+            totalCount={data.total_count}
           />
         )}
       </main>

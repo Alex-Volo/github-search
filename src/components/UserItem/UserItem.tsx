@@ -10,7 +10,7 @@ interface IUserItemProps {
 
 export const UserItem: FC<IUserItemProps> = ({ user }) => {
   const [isOpened, setIsOpened] = useState(false)
-  const { data, isSuccess, isFetching, isError, error } = useGetUserQuery(user.login, isOpened)
+  const { data, isFetching, isError, error } = useGetUserQuery(user.login, isOpened)
   const handleOpenClick = () => {
     setIsOpened(!isOpened)
   }
@@ -35,14 +35,14 @@ export const UserItem: FC<IUserItemProps> = ({ user }) => {
         ) : (
           <>
             <div>
-              <p>Тип: {data && data.data.type}</p>
-              <p>id: {data && data.data.id}</p>
+              <p>Тип: {data && data.type}</p>
+              <p>id: {data && data.id}</p>
             </div>
             <div>
-              <p>Публичных репозиториев: {data && data.data.public_repos}</p>
-              <p>Подписчиков: {data && data.data.followers}</p>
+              <p>Публичных репозиториев: {data && data.public_repos}</p>
+              <p>Подписчиков: {data && data.followers}</p>
             </div>
-            <p>На GitHub c {data && new Date(data.data.created_at).toLocaleDateString()}</p>
+            <p>На GitHub c {data && new Date(data.created_at).toLocaleDateString()}</p>
           </>
         )}
       </S.UserDetails>
